@@ -19,6 +19,7 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import axios from "axios";
 
+
 const formSchema = z.object({
   name: z.string().min(1),
 });
@@ -40,11 +41,13 @@ export const StoreModal = () => {
       setLoading(true);
 
       const response = await axios.post("/api/stores", values);
+      console.log(response)
 
-      console.log(response.data);
-      toast.success('Created')
+     window.location.assign(`/${response.data.id}`)
+      
     } catch (error) {
       toast.error('Something went wrong')
+      console.log(error)
     } finally {
       setLoading(false);
     }
