@@ -1,3 +1,5 @@
+'use client'
+
 import { Copy, Server } from "lucide-react"
 import { toast } from "react-hot-toast"
 import { Alert, AlertDescription, AlertTitle } from "./alert"
