@@ -12,6 +12,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "./ui/form";
 import { Input } from "./ui/input";
+import { toast } from "react-hot-toast";
+import axios from "axios";
+import { useParams, useRouter } from "next/navigation";
 
 interface SettingsFormProps {
   initialData: Store;
@@ -23,6 +26,9 @@ const formSchema = Z.object({
 type SettingsFormValues = Z.infer<typeof formSchema>;
 
 const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
+
+  const params = useParams();
+  const router = useRouter()
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -30,8 +36,22 @@ const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
     resolver: zodResolver(formSchema),
     defaultValues: initialData,
   });
-  const onSubmit =async(values:SettingsFormValues)=>{
-    //do simet
+
+
+  const onSubmit = async(data:SettingsFormValues)=>{
+    console.log(data)
+    try {
+      setLoading(true);
+      await axios.patch(`/api/stores/${params.storeId}`,data);
+      router.refresh()
+      toast.success('Store Updated')
+    } catch (error) {
+
+      toast.error("Something went wrong")
+      
+    }finally{
+      setLoading(false)
+    }
   }
 
   return (
@@ -63,7 +83,7 @@ const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
                 )} />
             </div>
             <Button disabled={loading} type='submit'>
-                Save Changed
+                Save Changes
             </Button>
 
         </form>
