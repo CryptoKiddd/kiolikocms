@@ -1,5 +1,5 @@
 "use client";
-
+export const revalidate = 0
 import * as Z from "zod";
 
 import { Store } from "@prisma/client";
@@ -57,6 +57,23 @@ const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
       setLoading(false);
     }
   };
+  const onDelete = async () => {
+   
+    try {
+      setLoading(true);
+      await axios.delete(`/api/stores/${params.storeId}`, );
+      router.push('/');
+      toast.success("Store Deleted");
+      router.refresh()
+    } catch (error) {
+      toast.error("Make sure you removed all products");
+    } finally {
+      setLoading(false);
+      setOpen(false)
+    }
+  };
+
+  
 
   return (
     <>
@@ -64,7 +81,7 @@ const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
     isOpen={open}
     onClose={()=>setOpen(false)}
     loading={loading}
-    onConfirm={()=>{}}
+    onConfirm={onDelete}
     />
       <div
         className="
