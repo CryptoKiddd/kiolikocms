@@ -22,6 +22,7 @@ import { Input } from "./ui/input";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
+import { AlertModal } from "./modals/alert-modal";
 
 interface SettingsFormProps {
   initialData: Store;
@@ -59,6 +60,12 @@ const SettingsForm: React.FC<SettingsFormProps> = ({ initialData }) => {
 
   return (
     <>
+    <AlertModal
+    isOpen={open}
+    onClose={()=>setOpen(false)}
+    loading={loading}
+    onConfirm={()=>{}}
+    />
       <div
         className="
     flex
