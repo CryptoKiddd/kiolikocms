@@ -23,8 +23,6 @@ import { toast } from "react-hot-toast";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
 import { AlertModal } from "./modals/alert-modal";
-import { ApiAlert } from "./ui/api-alert";
-import { useOrigin } from "@/hooks/use-origin";
 import ImageUpload from "./ui/image-upload";
 
 interface BillboardFormProps {
@@ -44,11 +42,11 @@ const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
 
-  const origin = useOrigin();
   const title = initialData ? "Edit Billboard" : "Create Billboard";
   const desc = initialData ? "Edit Billboard" : "Add new Billboard";
   const toastMessage = initialData ? "Billboard Edited" : "Billboard Created";
   const action = initialData ? "Edit" : "Create";
+
   const form = useForm<BillboardFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: initialData || {
