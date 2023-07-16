@@ -52,23 +52,25 @@ const BillboardForm: React.FC<BillboardFormProps> = ({ initialData }) => {
   const form = useForm<BillboardFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: initialData || {
-      label: "",
-      imageUrl: "",
+      label: '',
+      imageUrl: '',
     },
   });
 
   const onSubmit = async (data: BillboardFormValues) => {
-    console.log(data);
+    console.log(initialData);
     try {
       if(initialData){
         setLoading(true);
         await axios.patch(`/api/${params.storeId}/billboards/${params.billboardId}`, data);
       }else{
         setLoading(true);
-        await axios.post(`/api/${params.storeId}/billboards`, data);
+       await axios.post(`/api/${params.storeId}/billboards`, data);
+        
       }
       
       router.refresh();
+      router.push(`/${params.storeId}/billboards`)
       toast.success(toastMessage);
     } catch (error) {
       toast.error("Something went wrong");
