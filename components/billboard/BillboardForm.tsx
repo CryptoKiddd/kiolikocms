@@ -4,9 +4,9 @@ import * as Z from "zod";
 
 import { Billboard } from "@prisma/client";
 import { Trash } from "lucide-react";
-import { Button } from "./ui/button";
-import { Heading } from "./ui/Heading";
-import { Separator } from "./ui/separator";
+import { Button } from "../ui/button";
+import { Heading } from "../ui/Heading";
+import { Separator } from "../ui/separator"; 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
@@ -17,13 +17,13 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "./ui/form";
-import { Input } from "./ui/input";
+} from "../ui/form";
+import { Input } from "../ui/input";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import { useParams, useRouter } from "next/navigation";
-import { AlertModal } from "./modals/alert-modal";
-import ImageUpload from "./ui/image-upload";
+import { AlertModal } from "../modals/alert-modal";
+import ImageUpload from "../ui/image-upload";
 
 interface BillboardFormProps {
   initialData: Billboard | null;
