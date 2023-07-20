@@ -22,7 +22,7 @@ export const columns: ColumnDef<BillboardColumn>[] = [
   },
   {
     id:'actions',
-    cell:()=><CellAction />
+    cell:({row})=><CellAction data={row.original} />
   }
 
 ]
