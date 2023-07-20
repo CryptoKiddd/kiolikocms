@@ -8,10 +8,10 @@ import { toast } from "react-hot-toast"
 import { AlertModal } from "../modals/alert-modal"
 import { Button } from "../ui/button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuTrigger } from "../ui/dropdown-menu"
-import { CategoryColumn } from "./CategoryColumns"
+import { SizeColumn } from "./SizeColumns"
 
 interface CellActionProps{
-    data:CategoryColumn
+    data:SizeColumn
 }
 
 
@@ -30,7 +30,7 @@ export const CellAction:React.FC<CellActionProps> =({
       const onDelete = async () => {
         try {
           setLoading(true);
-          await axios.delete(`/api/${params.storeId}/categories/${data.id}`);
+          await axios.delete(`/api/${params.storeId}/sizes/${data.id}`);
           toast.success("Category Deleted");
           router.refresh();
         } catch (error) {
@@ -57,7 +57,7 @@ export const CellAction:React.FC<CellActionProps> =({
             <Copy className="mr-2 h-4 w-4" />
             Copy Id
          </DropdownMenuItem>
-         <DropdownMenuItem onClick={()=>router.push(`/${params.storeId}/categories/${data.id}`)}>
+         <DropdownMenuItem onClick={()=>router.push(`/${params.storeId}/sizes/${data.id}`)}>
             <Edit className="mr-2 h-4 w-4" />
             update
          </DropdownMenuItem>
