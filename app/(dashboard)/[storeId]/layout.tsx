@@ -16,6 +16,11 @@ export default async function DashboardLayout({
     if(!userId){
         redirect('/sing-in')
     }
+    const stores = await prismadb.store.findMany({
+        where:{
+            userId
+        }
+    })
     const store = await prismadb.store.findFirst({
         where:{
             id:params.storeId,
@@ -30,8 +35,8 @@ export default async function DashboardLayout({
     return(
         <>
         <div>
-             {/* @ts-expect-error Server Component */}
-            <Navbar />
+            {/* {@@ts-exept} */}
+            <Navbar stores={stores} />
             {children}
         </div>
         </>

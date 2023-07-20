@@ -5,17 +5,18 @@ import { StoreSwitcher, MainNav } from "@/components/index.js";
 
 import { redirect } from "next/navigation";
 import prismadb from "@/lib/prismadb";
-
-const Navbar = async() => {
+import { Store } from "@prisma/client";
+interface NavbarProps{
+    stores:Store[]
+}
+const Navbar:React.FC<NavbarProps> = ({
+    stores
+}) => {
     const {userId}=auth()
     if(!userId){
         redirect('/sign-in')
     }
-    const stores = await prismadb.store.findMany({
-        where:{
-            userId
-        }
-    })
+ 
     return ( 
         <div className="border-b">
            <div className="flex h-16 items-center px-4">
