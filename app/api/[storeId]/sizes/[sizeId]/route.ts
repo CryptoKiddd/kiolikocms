@@ -6,7 +6,7 @@ import prismadb from "@/lib/prismadb";
 
 export async function PATCH(
   req: Request,
-  { params }: { params: { sizeId: string,storeId: string } }
+  { params }: { params: { sizeId: string, storeId: string } }
 ) {
   try {
     const { userId } = auth();
@@ -43,7 +43,7 @@ export async function PATCH(
 
     const size = await prismadb.size.updateMany({
       where: {
-        id: params.storeId,
+        id: params.sizeId,
   
       },
       data: {
@@ -114,12 +114,11 @@ export async function GET(
       }
     
   
-      const size = await prismadb.billboard.findUnique({
-        where: {
-          id: params.sizeId,
-       
-        }
-      });
+    const size = await prismadb.size.findUnique({
+      where:{
+        id:params.sizeId
+      }
+    })
     
       return NextResponse.json(size);
     } catch (error) {

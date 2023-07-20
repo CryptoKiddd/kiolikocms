@@ -4,11 +4,11 @@ import prismadb from "@/lib/prismadb";
 const SizePage = async({
     params
 }:{
-    params:{billboardId:string}
+    params:{sizeId:string}
 }) => {
     const size = await prismadb.size.findUnique({
         where:{
-            id:params.billboardId
+            id:params.sizeId
         }
     })
     console.log('billboard',size)

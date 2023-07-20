@@ -31,10 +31,10 @@ export const CellAction:React.FC<CellActionProps> =({
         try {
           setLoading(true);
           await axios.delete(`/api/${params.storeId}/sizes/${data.id}`);
-          toast.success("Category Deleted");
+          toast.success("Size Deleted");
           router.refresh();
         } catch (error) {
-          toast.error("Make sure you removed all products under this category");
+          toast.error("Make sure you removed all products using this sizes");
         } finally {
           setLoading(false);
           setOpen(false);

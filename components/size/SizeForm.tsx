@@ -98,25 +98,19 @@ const SizeForm: React.FC<SizeFormProps> = ({ initialData }) => {
 
   return (
     <>
-      <AlertModal
-        isOpen={open}
-        onClose={() => setOpen(false)}
-        loading={loading}
-        onConfirm={onDelete}
-      />
-      <div
-        className="
-    flex
-    items-center
-    justify-between
-    "
-      >
+    <AlertModal 
+      isOpen={open} 
+      onClose={() => setOpen(false)}
+      onConfirm={onDelete}
+      loading={loading}
+    />
+     <div className="flex items-center justify-between">
         <Heading title={title} desc={desc} />
         {initialData && (
           <Button
             disabled={loading}
             variant="destructive"
-            size="icon"
+            size="sm"
             onClick={() => setOpen(true)}
           >
             <Trash className="h-4 w-4" />
@@ -125,57 +119,40 @@ const SizeForm: React.FC<SizeFormProps> = ({ initialData }) => {
       </div>
       <Separator />
       <Form {...form}>
-        <form
-          onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-8 w-full"
-        >
-          <div className="grid grid-cols-3 gap-8">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
+          <div className="md:grid md:grid-cols-3 gap-8">
             <FormField
               control={form.control}
               name="name"
-              render={({ field }) => {
-                return (
-                  <FormItem>
-                    <FormLabel>Name</FormLabel>
-                    <FormControl>
-                      <Input
-                        disabled={loading}
-                        placeholder="Size Name"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                );
-              }}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Name</FormLabel>
+                  <FormControl>
+                    <Input disabled={loading} placeholder="Size name" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
             <FormField
               control={form.control}
               name="value"
-              render={({ field }) => {
-                return (
-                  <FormItem>
-                    <FormLabel>Value</FormLabel>
-                    <FormControl>
-                      <Input
-                        disabled={loading}
-                        placeholder="Size Value"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                );
-              }}
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Value</FormLabel>
+                  <FormControl>
+                    <Input disabled={loading} placeholder="Size value" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
             />
-          
           </div>
-          <Button disabled={loading} type="submit">
+          <Button disabled={loading} className="ml-auto" type="submit">
             {action}
           </Button>
         </form>
       </Form>
-      <Separator />
     </>
   );
 };
