@@ -6,6 +6,7 @@ import { StoreSwitcher, MainNav } from "@/components/index.js";
 import { redirect } from "next/navigation";
 import prismadb from "@/lib/prismadb";
 import { Store } from "@prisma/client";
+import { ThemeToggle } from "./theme-toggle";
 interface NavbarProps{
     stores:Store[]
 }
@@ -23,6 +24,7 @@ const Navbar:React.FC<NavbarProps> = ({
             <StoreSwitcher items={stores} />
             <MainNav className="mx-6" />
             <div className="ml-auto flex items-center space-x-4">
+                <ThemeToggle />
                 <UserButton afterSignOutUrl="/" />
 
             </div>
